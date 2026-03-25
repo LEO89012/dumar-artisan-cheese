@@ -9,7 +9,7 @@
     --background: 0 0% 100%;
     --foreground: 0 0% 10%;
 
-    --card: 60 33% 96%;
+    --card: 48 33% 97%;
     --card-foreground: 0 0% 10%;
 
     --popover: 0 0% 100%;
@@ -18,11 +18,11 @@
     --primary: 45 72% 47%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 60 33% 96%;
+    --secondary: 48 33% 96%;
     --secondary-foreground: 0 0% 10%;
 
-    --muted: 60 20% 94%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 48 20% 94%;
+    --muted-foreground: 0 0% 45%;
 
     --accent: 45 72% 47%;
     --accent-foreground: 0 0% 100%;
@@ -30,17 +30,21 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 40 20% 88%;
-    --input: 40 20% 88%;
+    --border: 40 15% 90%;
+    --input: 40 15% 90%;
     --ring: 45 72% 47%;
 
     --radius: 0.5rem;
 
     --gold: 45 72% 47%;
-    --gold-light: 45 60% 70%;
-    --gold-dark: 45 80% 35%;
-    --cream: 60 33% 96%;
+    --gold-light: 45 55% 72%;
+    --gold-dark: 45 80% 32%;
+    --cream: 48 33% 96%;
     --charcoal: 0 0% 10%;
+
+    --shadow-soft: 0 4px 24px -4px hsla(0, 0%, 0%, 0.06);
+    --shadow-elevated: 0 12px 40px -8px hsla(0, 0%, 0%, 0.12);
+    --shadow-gold: 0 8px 30px -6px hsla(45, 72%, 47%, 0.25);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -67,38 +71,50 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-primary text-primary-foreground px-8 py-3 rounded-sm font-body font-semibold uppercase tracking-widest text-sm transition-all duration-300 hover:bg-gold-dark hover:shadow-lg;
+    @apply bg-primary text-primary-foreground px-8 py-3.5 rounded font-body font-semibold uppercase tracking-[0.15em] text-sm transition-all duration-300 hover:bg-gold-dark hover:shadow-lg active:scale-[0.97];
   }
   .btn-outline-gold {
-    @apply border-2 border-primary text-primary px-8 py-3 rounded-sm font-body font-semibold uppercase tracking-widest text-sm transition-all duration-300 hover:bg-primary hover:text-primary-foreground;
+    @apply border-2 border-primary text-primary px-8 py-3.5 rounded font-body font-semibold uppercase tracking-[0.15em] text-sm transition-all duration-300 hover:bg-primary hover:text-primary-foreground active:scale-[0.97];
   }
   .section-title {
-    @apply font-heading text-3xl md:text-4xl lg:text-5xl text-charcoal font-semibold;
+    @apply font-heading text-3xl md:text-4xl lg:text-5xl text-charcoal font-bold tracking-tight;
   }
   .section-subtitle {
-    @apply font-body text-muted-foreground text-lg max-w-2xl mx-auto;
+    @apply font-body text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed;
   }
   .gold-divider {
-    @apply w-16 h-0.5 bg-primary mx-auto;
+    @apply w-20 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent mx-auto;
   }
   .card-product {
-    @apply bg-card rounded-sm overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500;
+    @apply bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-border/50;
+  }
+  .glass-card {
+    @apply bg-background/80 backdrop-blur-md border border-border/40 rounded-lg;
   }
 }
 
 @layer utilities {
   .animate-fade-up {
-    animation: fadeUp 0.6s ease-out both;
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
   .animate-fade-in {
-    animation: fadeIn 0.5s ease-out both;
+    animation: fadeIn 0.6s ease-out both;
+  }
+  .animate-slide-in-right {
+    animation: slideInRight 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .text-gradient-gold {
+    background: linear-gradient(135deg, hsl(45 55% 72%), hsl(45 72% 47%), hsl(45 80% 32%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
 
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(40px);
   }
   to {
     opacity: 1;
@@ -109,4 +125,35 @@
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--cream));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
 }
