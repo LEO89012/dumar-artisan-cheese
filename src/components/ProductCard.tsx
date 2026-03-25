@@ -18,7 +18,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
     new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP", minimumFractionDigits: 0 }).format(price);
 
   return (
-    <div className="card-product">
+    <div className="card-product group">
       <div className="relative overflow-hidden aspect-square">
         <img
           src={product.image}

@@ -82,7 +82,7 @@
     @apply w-16 h-0.5 bg-primary mx-auto;
   }
   .card-product {
-    @apply bg-card rounded-sm overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group;
+    @apply bg-card rounded-sm overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500;
   }
 }
 
