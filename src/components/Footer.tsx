@@ -67,7 +67,7 @@ const Footer = () => {
             © {new Date().getFullYear()} DUMAR. Todos los derechos reservados.
           </p>
           <p className="font-body text-xs text-background/30">
-            Hecho con pasión en Colombia 🇨🇴
+            {"\n"}
           </p>
         </div>
       </div>
